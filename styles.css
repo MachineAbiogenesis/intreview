@@ -209,8 +209,8 @@ section {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.4);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 10px 28px rgba(37, 99, 235, 0.35);
 }
 
 .btn-primary:active {
@@ -253,6 +253,38 @@ section {
     font-size: 1.25rem;
 }
 
+.btn-outline {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: var(--color-white);
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.btn-outline:hover::before {
+    transform: scaleX(1);
+}
+
+.btn-outline:hover {
+    border-color: var(--color-white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
 /* ===================================
    Hero Section
    =================================== */
@@ -278,33 +310,89 @@ section {
 .hero-content {
     position: relative;
     z-index: 1;
-    text-align: center;
-    max-width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+    max-width: 1200px;
+}
+
+.hero-text {
+    flex: 1;
+    max-width: 600px;
+    text-align: left;
+}
+
+.hero-visual {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-mockup {
+    width: 280px;
+    height: auto;
+    position: relative;
+    transform: perspective(1200px) rotateY(-8deg) rotateX(2deg);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    animation: fadeInUp 0.8s var(--transition-ease);
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25)) drop-shadow(-8px 0 15px rgba(0, 0, 0, 0.12));
+}
+
+.inside-book {
+    width: 280px;
+    margin: 0 auto;
+}
+
+.book-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.book-mockup:hover {
+    transform: perspective(1200px) rotateY(-5deg) rotateX(1deg) translateY(-10px) scale(1.04);
+    filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.3)) drop-shadow(-10px 0 20px rgba(0, 0, 0, 0.15));
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-md);
+    animation: fadeInUp 0.8s var(--transition-ease) 0.4s backwards;
 }
 
 .hero-title {
     margin-bottom: var(--spacing-md);
-    font-size: 3.5rem;
+    font-size: 2.75rem;
+    font-weight: 700;
     animation: fadeInUp 0.8s var(--transition-ease);
+    text-align: left;
 }
 
 .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     margin-bottom: var(--spacing-lg);
-    opacity: 0.95;
+    opacity: 0.9;
     line-height: 1.7;
+    font-weight: 400;
     animation: fadeInUp 0.8s var(--transition-ease) 0.2s backwards;
+    text-align: left;
 }
 
 .hero .btn-primary {
-    margin-bottom: var(--spacing-md);
-    animation: fadeInUp 0.8s var(--transition-ease) 0.4s backwards;
+    animation: none;
 }
 
 .hero-stats {
     display: flex;
     gap: var(--spacing-md);
-    justify-content: center;
     flex-wrap: wrap;
     margin-top: var(--spacing-lg);
 }
@@ -313,27 +401,27 @@ section {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    padding: 0.75rem 1.25rem;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    padding: 0.625rem 1rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     animation: fadeInUp 0.8s var(--transition-ease) 0.6s backwards;
     transition: all 0.3s ease;
 }
 
 .stat-badge:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .stat-icon {
-    font-size: 1.4rem;
+    font-size: 1.25rem;
 }
 
 .stat-text {
-    font-size: 0.95rem;
+    font-size: 0.875rem;
     color: var(--color-white);
 }
 
@@ -493,6 +581,18 @@ section {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.inside-description {
+    margin-bottom: var(--spacing-lg);
+}
+
+.description-paragraph {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #4a5568;
+    margin-bottom: 1.25rem;
+    text-align: left;
 }
 
 .pdf-preview {
@@ -1007,19 +1107,23 @@ section {
    =================================== */
 @media (max-width: 768px) {
     :root {
-        --font-size-3xl: 2.5rem;
-        --font-size-2xl: 2rem;
-        --font-size-xl: 1.5rem;
-        --spacing-lg: 3rem;
-        --spacing-xl: 4rem;
+        --font-size-3xl: 2rem;
+        --font-size-2xl: 1.75rem;
+        --font-size-xl: 1.35rem;
+        --spacing-lg: 2.5rem;
+        --spacing-xl: 3.5rem;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 1.95rem;
+        text-align: center;
+        line-height: 1.2;
     }
 
     .hero-subtitle {
-        font-size: 1.125rem;
+        font-size: 1rem;
+        text-align: center;
+        line-height: 1.6;
     }
 
     .inside-content {
@@ -1043,6 +1147,76 @@ section {
         width: 100%;
     }
 
+    .book-mockup {
+        width: 200px;
+        transform: perspective(1000px) rotateY(-5deg) rotateX(1deg);
+        filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.2)) drop-shadow(-6px 0 12px rgba(0, 0, 0, 0.1));
+    }
+
+    .book-mockup:hover {
+        transform: perspective(1000px) rotateY(-3deg) rotateX(0.5deg) translateY(-6px) scale(1.02);
+        filter: drop-shadow(0 16px 32px rgba(0, 0, 0, 0.25)) drop-shadow(-8px 0 16px rgba(0, 0, 0, 0.12));
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .hero-text {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .stat-badge {
+        padding: 0.5rem 0.875rem;
+    }
+
+    .stat-icon {
+        font-size: 1.1rem;
+    }
+
+    .stat-text {
+        font-size: 0.8rem;
+    }
+
+    .description-paragraph {
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+
+    .section-title {
+        font-size: 1.85rem;
+    }
+
+    .container {
+        padding: 0 1.25rem;
+    }
+
+    .inside-book {
+        width: 200px;
+    }
+
     .pricing-main {
         flex-direction: column;
         gap: 2rem;
@@ -1062,6 +1236,10 @@ section {
 
     .price-amount {
         font-size: 4rem;
+    }
+
+    .book-mockup {
+        width: 200px;
     }
 
     .pdf-mockup {
